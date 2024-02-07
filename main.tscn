@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dijaqs28u7cx0"]
+
+[ext_resource type="Script" path="res://Astar.gd" id="1_04idx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ktgy0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qkeud"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bfy81"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d0ows"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rbvmi"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.918433, 0.395578, 0, -0.395578, 0.918433, 0, 5.54085, 11.9607)
+
+[node name="Astar" type="Node3D" parent="."]
+script = ExtResource("1_04idx")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31494, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_ktgy0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_qkeud")
+
+[node name="PlayerController" type="Node3D" parent="."]
+
+[node name="Ground1" type="StaticBody3D" parent="." groups=["pathable"]]
+physics_material_override = SubResource("PhysicsMaterial_bfy81")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground1"]
+transform = Transform3D(22.9268, 0, 0, 0, 1, 0, 0, 0, 26.0442, 0, 0, 0)
+mesh = SubResource("BoxMesh_d0ows")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground1"]
+shape = SubResource("BoxShape3D_rbvmi")
+
+[node name="Ground2" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_bfy81")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground2"]
+transform = Transform3D(9.26735, 0, 0, 0, 1.00363, 0, 0, 0, 14.0017, -16.1265, 0, 0)
+mesh = SubResource("BoxMesh_d0ows")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground2"]
+shape = SubResource("BoxShape3D_rbvmi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.497426, 0.815032, -0.297138, -0.327536, 0.493615, 0.805645, 0.803298, -0.303425, 0.51249, 0, 5.64684, 0)
